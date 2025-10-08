@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Świat C++ – Programy do pobrania</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="favicon.ico" alt="Ikona">
+        <h1>Świat C++</h1>
+    </header>
+
+    <main>
+        <h2>Programy do pobrania</h2>
+        <p><strong>odtyłacz</strong><br> 2.0v – 1,06 MB</p>
+        <button onclick="PobierzProgram('odtyłacz_2.0v.exe')">Pobierz</button>
+        <br><br>
+        <button onclick="window.location.href='starsze.html'">Starsze wersje</button>
+    </main>
+
+    <footer>&copy; 2025 Świat C++ – wszystkie prawa zastrzeżone</footer>
+
+    <script>
+        function PobierzProgram(sciezka) {
+            alert("Rozpoczynam pobieranie: " + sciezka);
+            const link = document.createElement('a');
+            link.href = sciezka;
+            link.download = sciezka.split('/').pop();
+            link.click();
+        }
+    </script>
+</body>
+</html>
