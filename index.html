@@ -2,34 +2,38 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Świat C++ – Programy do pobrania</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <title>Witaj w świecie programowania!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            text-align: center;
+            padding-top: 150px;
+        }
+        h1 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: white;
+            color: #0984e3;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #dfe6e9;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="favicon.ico" alt="Ikona">
-        <h1>Świat C++</h1>
-    </header>
-
-    <main>
-        <h2>Programy do pobrania</h2>
-        <p><strong>odtyłacz</strong><br> 2.0v – 1,06 MB</p>
-        <button onclick="PobierzProgram('odtyłacz_2.0v.exe')">Pobierz</button>
-        <br><br>
-        <button onclick="window.location.href='starsze.html'">Starsze wersje</button>
-    </main>
-
-    <footer>&copy; 2025 Świat C++ – wszystkie prawa zastrzeżone</footer>
-
-    <script>
-        function PobierzProgram(sciezka) {
-            alert("Rozpoczynam pobieranie: " + sciezka);
-            const link = document.createElement('a');
-            link.href = sciezka;
-            link.download = sciezka.split('/').pop();
-            link.click();
-        }
-    </script>
+    <h1>Witaj w świecie programowania!</h1>
+    <p>Odkrywaj i pobieraj ciekawe programy stworzone w C++</p>
+    <button onclick="window.location.href='programy.html'">Dalej →</button>
 </body>
 </html>
