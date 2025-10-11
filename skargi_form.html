@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Programy do pobrania</title>
+    <title>Wyślij skargę</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,9 +15,12 @@
             font-size: 36px;
             margin-bottom: 25px;
         }
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
+        input {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         button {
             font-size: 16px;
@@ -37,14 +40,14 @@
     </style>
 </head>
 <body>
-    <h1>Programy do pobrania</h1>
-    <p>Najnowsza wersja "Odtyłacz" - 1,06 MB</p>
-    <button onclick="window.location.href='odtyłacz_2.0v.exe'">Pobierz Odtyłacz 2.0v</button>
-    <p>Starsze wersje:</p>
-    <button onclick="window.location.href='starsze.html'">Starsze wersje</button>
-    <br><br>
-    <button onclick="window.location.href='skargi_form'">Zgłoś problem</button>
-    <br><br>
+    <h1>Masz problem z programem? Napisz skargę!</h1>
+    <form action="/skargi_form" method="post">
+        <input type="text" name="tresc" placeholder="Napisz swoją skargę" required><br>
+        <button type="submit">Wyślij skargę</button>
+    </form>
+    <br>
+    <button onclick="window.location.href='programy.html'">Wróć do Programy do pobrania</button>
+    <br>
     <button onclick="window.location.href='index.html'">Wróć do strony głównej</button>
 </body>
 </html>
