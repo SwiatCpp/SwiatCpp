@@ -35,5 +35,5 @@ def zapisz_skarge():
 
     return "<h2>Dziękujemy! Skarga została zapisana.</h2><a href='/programy.html'>Powrót</a>"
 
-if __name__ == "__main__":
-    app.run(port=5000)
+if __name__ == '__main__':
+    app.run(debug=False)
