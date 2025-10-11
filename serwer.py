@@ -14,21 +14,20 @@ def programy():
 def starsze():
     return send_file('starsze.html')
 
-@app.route('/skargi_form')
-def skargi_form_get():
-    return send_file('skargi_form.html')
-
-@app.route('/skargi_form', methods=['POST'])
-def skargi_form_post():
-    tresc = request.form['tresc']
-    with open('skargi.txt', 'a', encoding='utf-8') as f:
-        f.write(tresc + '\n')
-    return '''
-    <p>Dziękujemy za zgłoszenie!</p>
-    <button onclick="window.location.href='programy.html'">Wróć do Programy do pobrania</button>
-    <br>
-    <button onclick="window.location.href='index.html'">Wróć do strony głównej</button>
-    '''
+@app.route('/skargi_form', methods=['GET', 'POST'])
+def skargi_form():
+    if request.method == 'POST':
+        tresc = request.form['tresc']
+        with open('skargi.txt', 'a', encoding='utf-8') as f:
+            f.write(tresc + '\n')
+        return '''
+        <p>Dziękujemy za zgłoszenie!</p>
+        <button onclick="window.location.href='programy.html'">Wróć do Programy do pobrania</button>
+        <br>
+        <button onclick="window.location.href='index.html'">Wróć do strony głównej</button>
+        '''
+    else:
+        return send_file('skargi_form.html')
 
 @app.route('/sekretny_link_do_skarg_123abc')
 def pobierz_skargi():
