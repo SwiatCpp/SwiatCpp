@@ -1,39 +1,38 @@
-from flask import Flask, request, send_file
-import datetime
-import os
+from flask import Flask, request, render_template_string, send_file, redirect, url_for
 
 app = Flask(__name__)
 
-# Funkcja do serwowania plików HTML z bieżącego folderu
-def html(filename):
-    return send_file(os.path.join(os.getcwd(), filename))
-
+# Strona główna z formularzem skargi
 @app.route('/')
-def index():
-    return html('index.html')
+def home():
+    return '''
+    <h1>Świat C++</h1>
+    <p>Masz problem z programem? Napisz skargę!</p>
+    <form action="/skarga" method="post">
+        <input type="text" name="tresc" placeholder="Napisz swoją skargę" required>
+        <button type="submit">Wyślij skargę</button>
+    </form>
+    <p><a href="/pobierz_skargi">Pobierz wszystkie skargi</a></p>
+    '''
 
-@app.route('/programy.html')
-def programy():
-    return html('programy.html')
-
-@app.route('/starsze.html')
-def starsze():
-    return html('starsze.html')
-
-@app.route('/skarga.html')
-def skarga():
-    return html('skarga.html')
-
+# Odbieranie formularza i zapisywanie do pliku
 @app.route('/skarga', methods=['POST'])
-def zapisz_skarge():
-    nazwa = request.form.get('nazwa_programu', 'Nie podano')
-    tresc = request.form.get('wiadomosc', 'Brak treści')
-    czas = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+def skarga():
+    tresc = request.form['tresc']
+    with open('skargi.txt', 'a', encoding='utf-8') as f:
+        f.write(tresc + '\n')
+    return '''
+    <p>Dziękujemy za zgłoszenie!</p>
+    <p><a href="/">Wróć do strony głównej</a></p>
+    '''
 
-    with open('skargi.txt', 'a', encoding='utf-8') as plik:
-        plik.write(f"[{czas}] {nazwa}: {tresc}\n")
-
-    return "<h2>Dziękujemy! Skarga została zapisana.</h2><a href='/programy.html'>Powrót</a>"
+# Pobieranie pliku skargi.txt
+@app.route('/pobierz_skargi')
+def pobierz_skargi():
+    try:
+        return send_file('skargi.txt', as_attachment=True)
+    except Exception:
+        return '<p>Plik skargi.txt jeszcze nie istnieje.</p><p><a href="/">Wróć</a></p>'
 
 if __name__ == '__main__':
     app.run(debug=False)
